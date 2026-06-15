@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        nodeversion: [20,21,22]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ matrix.nodeversion }}
 
       - name: Clean Install
         run: npm ci
